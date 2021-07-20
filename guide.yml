@@ -1,0 +1,157 @@
+content:
+  - title: Introduction
+    content:
+      - content: |
+          > The cloud native landscape guide was initiated by the
+          > [CNCF Business Value Subcommittee](https://github.com/cncf/business-value)
+          > and [Cartografos group](https://github.com/cncf/cartografos). It was authored by
+          > Jason Morgan and Catherine Paganini, and edited and reviewed by Simon Forster and
+          > Ihor Dvoretskyi.
+
+          If you've researched cloud native applications and technologies, you've probably come
+          across the [CNCF cloud native landscape](https://landscape.cncf.io). Unsurprisingly,
+          the sheer scale of it can be overwhelming. So many categories and so many technologies.
+          How do you make sense of it?
+
+          As with anything else, if you break it down and analyze it one piece at a time, you'll
+          find it's not that complex and makes a lot of sense. In fact, the map is neatly organized
+          by functionality and, once you understand what each category represents, navigating it
+          becomes a lot easier.
+
+          In this guide, we’ll break this mammoth landscape down and provide a high-level overview
+          of its layers, columns, and categories.
+      - title: What is the cloud native landscape?
+        content: |
+          The goal of the cloud native landscape is to compile and organize all cloud native open
+          ource projects and proprietary products into categories, providing an overview of the
+          current ecosystem. Organizations that have a cloud native project or product can
+          [submit a PR](https://github.com/cncf/landscape/) to request it to be added to the
+          landscape.
+      - title: How to use this guide?
+        content: |
+          In this guide, you'll find one chapter per layer and column which discusses each category
+          within it. Categories are broken down into: what it is, the problem it addresses, how it
+          helps, and technical 101. While the first three sections assume no technical background,
+          the technical 101 is targeted to engineers just getting started with cloud native. We
+          also included a section for associates buzzwords and lists CNCF projects
+
+          ![CNCF Landscape](https://landscape.cncf.io/images/landscape_preview.png "CNCF Landscape")
+
+          > ##### INFOBOX
+          >
+          > When looking at the landscape, you'll note a few distinctions:
+          >  * Projects in large boxes are CNCF-hosted open source projects. Some are still in
+          >    the incubation phase (light blue/purple frame), while others are graduated
+          >    projects (dark blue frame).
+          >  * Projects in small white boxes are open source projects.
+          >  * Products in gray boxes are proprietary products.
+          >
+          > Please note that new projects are continuously becoming part of the CNCF so
+          > always refer to the actual landscape – things are moving fast!
+
+  - title: Provisioning
+    category: true
+    content:
+      - content: |
+          Provisioning is the first layer in the cloud native landscape. It encompasses tools that
+          are used to *create and harden* the foundation on which cloud native apps are built.
+          You'll find tools to automatically configure, create, and manage the infrastructure,
+          as well as  forscanning, signing, and storing container images. The layer also extends
+          to security with tools that enable policy setting and enforcement, embedded authentication
+          and authorization, and the handling of secrets distribution. That's a mouthful, so let's
+          discuss each category at a time.
+      - title: Automation & Configuration
+        subcategory: true
+        buzzwords:
+          - Infrastructure-as-Code (IaC)
+          - Automation
+          - Declarative Configuration
+        content: |
+          #### What it is
+
+          Automation and configuration tools speed up the creation and configuration of compute
+          resources (virtual machines, networks, firewall rules, load balancers, etc.). Tools in
+          this category either handle different parts of the provisioning process or try to control
+          everything end-to-end. Most provide the ability to integrate with other projects and
+          products in the space.
+
+          #### Problem it addresses
+
+          Traditionally, IT processes relied on lengthy and labor intensive manual release cycles,
+          typically between three to six months. Those cycles came with lots of human processes and
+          controls that slowed down changes to production environments. These slow release cycles
+          and static environments aren’t compatible with cloud native development. To deliver on
+          rapid development cycles, infrastructure must be provisioned dynamically and without
+          human intervention.
+
+          #### How it helps
+
+          Tools of this category allow engineers to build computing environments without human
+          intervention. By codifying the environment setup it becomes reproducible with the click
+          of a button. While manual setup is error prone, once codified, environment creation
+          matches the exact desired state -- a huge advantage.
+
+          While tools may take different approaches, they all aim at reducing the required work
+          to provision resources through automation.
+
+          #### Technical 101
+
+          As we move from old-style human-driven provisioning to a new on-demand scaling model
+          driven by the cloud, the patterns and tools we used before no longer meet our needs.
+          Most organizations can’t afford a large 24x7 staff to create, configure, and manage
+          servers. Automated tools like Terraform reduce the level of effort required to scale
+          tens of servers and networks with hundreds of firewall rules. Tools like Puppet, Chef,
+          and Ansible provision and/or configure these new servers and applications
+          programmatically as they are spun up and allow them to be consumed by developers.
+
+          Some tools interact directly with the infrastructure APIs provided by platforms like
+          AWS or vSphere, while others focus on configuring the individual machines to make them
+          part of a Kubernetes cluster. Many, like Chef and Terraform, can interoperate to provision
+          and configure the environment. Others, like OpenStack, exist to provide an
+          Infrastructure-as-a-Service (IaaS) environment that other tools could consume.
+          Fundamentally, you'll need one or more tools in this space as part of laying down the
+          computing environment, CPU, memory, storage, and networking, for your Kubernetes clusters.
+          You'll also need a subset of these to create and manage the Kubernetes clusters
+          themselves.
+
+          There are now over 5 CNCF projects in this space, more if you count projects like Cluster
+          API which don’t appear on the landscape. There is also a very robust set of other open
+          source and vendor provided tools.
+      - title: Container Registry
+        buzzwords:
+          - Container
+          - OCI Image
+          - Registry
+        subcategory: true
+        content: |
+          #### What it is
+
+          Before diving into container registries, we need to define three tightly related concepts:
+
+          * **Container** is "a running process with resource and capability constraints managed by a
+            computer’s operating system"
+            ([Cloud Native Glossary](https://github.com/cncf/glossary/blob/main/definitions/container.md)).
+          * **Image** is a set of archive files needed to run containers and its process. You could
+            see it as a form of template on which you can create an unlimited number of containers.
+          * **Repository**, or just repo, is a space to store images.
+
+          And **container registries** are specialized web applications that categorize and store repositories.
+
+          Let's recap real quick: images contain the information needed to execute a program
+          (within a container) and are stored in repositories which in turn are categorized and
+          grouped in registries. Tools that build, run, and manage containers need access to those
+          images. Access is provided by referencing the registry (the path to access the image).
+
+          ![Container Registry Diagram](/images/guide/container-registry-diagram.png =500x*)
+      - title: Security & Compliance
+        subcategory: true
+        buzzwords:
+          - Image scanning
+          - Image signing
+          - Policy enforcement
+          - Audit
+          - Certificate management
+        content: |
+          #### What it is
+
+          FILL ME
