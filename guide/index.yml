@@ -1,0 +1,29 @@
+content:
+  - title: Introduction
+    file: introduction.md
+  - title: Provisioning
+    category: true
+    content:
+      - file: provisioning.md
+      - title: Automation & Configuration
+        subcategory: true
+        file: automation-and-configuration.md
+        buzzwords:
+          - Infrastructure-as-Code (IaC)
+          - Automation
+          - Declarative Configuration
+      - title: Container Registry
+        subcategory: true
+        buzzwords:
+          - Container
+          - OCI Image
+          - Registry
+        file: container-registry.md
+      - title: Security & Compliance
+        subcategory: true
+        buzzwords:
+          - Image scanning
+          - Image signing
+          - Policy enforcement
+          - Audit
+          - Certificate management
