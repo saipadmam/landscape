@@ -1,4 +1,5 @@
 content:
+  - file: infobox.md
   - title: Introduction
     file: introduction.md
   - title: Provisioning
