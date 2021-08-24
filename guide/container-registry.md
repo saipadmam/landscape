@@ -15,6 +15,3 @@ Let's recap real quick: images contain the information needed to execute a progr
 (within a container) and are stored in repositories which in turn are categorized and
 grouped in registries. Tools that build, run, and manage containers need access to those
 images. Access is provided by referencing the registry (the path to access the image).
-
-![Container Registry Diagram](/images/guide/container-registry-diagram.png =500x*)
-
