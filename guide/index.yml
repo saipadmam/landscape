@@ -28,3 +28,10 @@ content:
           - Policy enforcement
           - Audit
           - Certificate management
+  - title: Platform
+    category: true
+    content:
+      - title: Certified Kubernetes - Distribution
+        subcategory: true
+      - title: Certified Kubernetes - Hosted
+        subcategory: true
